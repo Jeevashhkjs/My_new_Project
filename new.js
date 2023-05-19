@@ -189,7 +189,7 @@ let end = 0;
 //next btn function
     nextBtn.addEventListener("click",()=>{
         pageCount++
-    
+
         if(dataLength % displayedCards == 0){
             if(pageCount > pageCountLength){
                 pageCount = pageCountLength
@@ -197,7 +197,7 @@ let end = 0;
         }
         else{
             if(pageCount > pageCountLength){
-                pageCount = dataLength
+                pageCount = pageCountLength
                 end = 1
             }
         }
@@ -212,6 +212,7 @@ let end = 0;
         if(pageCount < 1){
             pageCount = 1
         }
+
         paginationFunc(pageCount,getData,end)
     })
 
@@ -223,13 +224,13 @@ let end = 0;
 function paginationFunc(getPageCount,datum,getEnd){
 
     let getAllDatum = [];
-
+    
     let loopLength = getPageCount * displayedCards
     let loopInitialValue = loopLength - displayedCards
-    console.log(loopInitialValue,loopLength)
+
     if(getEnd){
         loopLength = datum.length
-        loopInitialValue = datum.length - datum.length % displayedCards 
+        loopInitialValue = datum.length - datum.length % displayedCards
     }
 
     for(let i=loopInitialValue;i<loopLength;i++){
