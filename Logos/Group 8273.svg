@@ -1,0 +1,8 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 14C12.2091 14 14 12.2091 14 10C14 7.79086 12.2091 6 10 6C7.79086 6 6 7.79086 6 10C6 12.2091 7.79086 14 10 14Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="6.95" y1="6.85" x2="4.85" y2="4.05" stroke="white" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" stroke-dasharray="3 6 9 12"/>
+<line x1="0.75" y1="-0.75" x2="4.25" y2="-0.75" transform="matrix(0.6 -0.8 -0.8 -0.6 12 7)" stroke="white" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" stroke-dasharray="3 6 9 12"/>
+<line x1="0.75" y1="-0.75" x2="4.25" y2="-0.75" transform="matrix(-0.6 0.8 0.8 0.6 8 13)" stroke="white" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" stroke-dasharray="3 6 9 12"/>
+<line x1="13.05" y1="13.15" x2="15.15" y2="15.95" stroke="white" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" stroke-dasharray="3 6 9 12"/>
+</svg>
