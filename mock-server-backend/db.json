@@ -4,7 +4,7 @@
       "id": 1,
       "project_name": "Miracle project",
       "owner_name": "sanjay",
-      "is_starred": false,
+      "is_starred": true,
       "category": "my_projects"
     },
     {
@@ -23,36 +23,29 @@
     },
     {
       "id": 4,
-      "project_name": "Design project",
-      "owner_name": "sanjay",
+      "project_name": "DBMS project",
+      "owner_name": "ram",
       "is_starred": false,
-      "category": "shared_projects"
+      "category": "my_projects"
     },
     {
       "id": 5,
-      "project_name": "Php project",
+      "project_name": "DBMS project",
       "owner_name": "ram",
       "is_starred": false,
-      "category": "shared_projects"
-    },
-    {
-      "id": 6,
-      "project_name": "Document project",
-      "owner_name": "sam",
-      "is_starred": false,
-      "category": "shared_projects"
+      "category": "my_projects"
     },
     {
       "id": 7,
-      "project_name": "Watch project",
-      "owner_name": "sanjay",
-      "is_starred": false,
+      "project_name": "abc project",
+      "owner_name": "avinash",
+      "is_starred": true,
       "category": "shared_projects"
     },
     {
       "id": 8,
-      "project_name": "Team project",
-      "owner_name": "ram",
+      "project_name": "abc project",
+      "owner_name": "avinash",
       "is_starred": false,
       "category": "shared_projects"
     },
@@ -74,7 +67,7 @@
       "id": 11,
       "project_name": "Miracle project",
       "owner_name": "sanjay",
-      "is_starred": true,
+      "is_starred": false,
       "category": "my_projects"
     },
     {
@@ -95,7 +88,7 @@
       "id": 14,
       "project_name": "Design project",
       "owner_name": "sanjay",
-      "is_starred": false,
+      "is_starred": true,
       "category": "shared_projects"
     },
     {
@@ -109,7 +102,7 @@
       "id": 16,
       "project_name": "Document project",
       "owner_name": "sam",
-      "is_starred": false,
+      "is_starred": true,
       "category": "shared_projects"
     },
     {
