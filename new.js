@@ -2,6 +2,8 @@
 
 let btns = document.querySelector(".buttonses")
 let cards = document.querySelector(".NoOfCards")
+let ulList = document.querySelector(".countsListsUL") 
+
 
 //next and pre btns
 let nextBtn = document.querySelector("#nextBtn")
@@ -78,9 +80,11 @@ function createElements(getClass){
     fetch(passedLink)
     .then(res => res.json())
     .then(data => {
-
+        console.log(data)
         // passing data from dp to web with filter
         createHtmlElementFunciton(data)
+
+        pageBtnsFnc(data)
 
     })
 
@@ -148,7 +152,7 @@ function starFunction(getTarId){
     fetch(`http://localhost:3000/projects/${getTarId.id}`)
     .then(res => res.json())
     .then(datum => {
-        console.log(values)
+
         fetch(`http://localhost:3000/projects/${getTarId.id}`,{
             method:"PUT",
             headers:{'content-type':'application/json'},
@@ -183,9 +187,21 @@ function pageBtnsFnc(getData){
 // pagecount length divisible by pagecards
 let pageCountLength = Math.floor(getData.length / displayedCards)
 
-// get data length
 let dataLength = getData.length
-let end = 0;
+
+if(dataLength % displayedCards == 0){
+    createPageNumbers(pageCountLength,getData,0)
+}
+else{
+    createPageNumbers(pageCountLength + 1,getData,1)
+}
+
+// get data length
+
+// initial values and length
+let loopLength = pageCount * displayedCards
+let loopInitialValue = loopLength - displayedCards
+
 //next btn function
     nextBtn.addEventListener("click",()=>{
         pageCount++
@@ -195,45 +211,85 @@ let end = 0;
                 pageCount = pageCountLength
             }
         }
-        else{
+        
+        loopLength = pageCount * displayedCards
+        loopInitialValue = loopLength - displayedCards
+
+        if(dataLength % displayedCards != 0){
             if(pageCount > pageCountLength){
                 pageCount = pageCountLength
-                end = 1
+
+                loopLength = dataLength
+                loopInitialValue = dataLength - (dataLength % displayedCards)
+
             }
         }
 
-        paginationFunc(pageCount,getData,end)
+        paginationFunc(loopInitialValue,loopLength,getData)
     })
 
 //previous btn function
     previousBtn.addEventListener("click",()=>{
 
         pageCount--
+
         if(pageCount < 1){
             pageCount = 1
         }
 
-        paginationFunc(pageCount,getData,end)
-    })
+        loopLength = pageCount * displayedCards
+        loopInitialValue = loopLength - displayedCards
 
-    paginationFunc(pageCount,getData,end)
+        if(dataLength % displayedCards != 0){
+
+            if(loopLength == dataLength - ((dataLength % displayedCards) + displayedCards)){
+                loopLength = dataLength - (dataLength % displayedCards)
+                loopInitialValue = loopLength - displayedCards
+            }
+
+        }
+
+        paginationFunc(loopInitialValue,loopLength,getData)
+    })
+    
+
+    paginationFunc(loopInitialValue,loopLength,getData)
 
 }
 
+function createPageNumbers(getPageCnts,datum,getStatus){
+
+    let htmlEle = ""
+    for(let i=0;i<getPageCnts;i++){
+        htmlEle += `<li class = "pageNumbers">${i+1}</li>`
+    }
+    ulList.innerHTML = htmlEle
+
+    let pageNumbersBtns = document.querySelectorAll(".pageNumbers")
+    pageNumbersBtns.forEach(getBtns => {
+        getBtns.addEventListener("click",(e)=>{
+            let targetId = Number(e.target.innerText)
+            let lpLength = targetId * displayedCards
+            let initial = lpLength - displayedCards
+
+            if(getStatus){
+                if(targetId == getPageCnts){
+                    lpLength = datum.length
+                    initial = datum.length - (datum.length % displayedCards)
+                }
+            }
+
+            paginationFunc(initial,lpLength,datum)
+        })
+    });
+}
+
 //pagination data passing through create element function
-function paginationFunc(getPageCount,datum,getEnd){
+function paginationFunc(LengthInitailValue,LoopLength,datum){
 
     let getAllDatum = [];
     
-    let loopLength = getPageCount * displayedCards
-    let loopInitialValue = loopLength - displayedCards
-
-    if(getEnd){
-        loopLength = datum.length
-        loopInitialValue = datum.length - datum.length % displayedCards
-    }
-
-    for(let i=loopInitialValue;i<loopLength;i++){
+    for(let i=LengthInitailValue;i<LoopLength;i++){
         getAllDatum.push(datum[i])
     }
 

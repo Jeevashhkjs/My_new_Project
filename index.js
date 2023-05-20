@@ -1,6 +1,7 @@
 let btns = document.querySelector(".buttonses")
 let cards = document.querySelector(".NoOfCards")
 let searchElement = document.querySelector(".inputsearch")
+
 let pageNumberCounts = 1;
 
 
