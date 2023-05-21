@@ -179,22 +179,22 @@ function deleteFunction(getTargetId){
 
 // pagination code here
 let pageCount = 1;
-let displayedCards = 3;
+let displayedCards = 2;
 
 //btns function
 function pageBtnsFnc(getData){
 
 // pagecount length divisible by pagecards
-let pageCountLength = Math.floor(getData.length / displayedCards)
+let pageCountLength = Math.ceil(getData.length / displayedCards)
 
 let dataLength = getData.length
 
-if(dataLength % displayedCards == 0){
-    createPageNumbers(pageCountLength,getData,0)
-}
-else{
-    createPageNumbers(pageCountLength + 1,getData,1)
-}
+// if(dataLength % displayedCards == 0){
+//     createPageNumbers(pageCountLength,getData,0)
+// }
+// else{
+//     createPageNumbers(pageCountLength + 1,getData,1)
+// }
 
 // get data length
 
@@ -206,22 +206,17 @@ let loopInitialValue = loopLength - displayedCards
     nextBtn.addEventListener("click",()=>{
         pageCount++
 
-        if(dataLength % displayedCards == 0){
             if(pageCount > pageCountLength){
                 pageCount = pageCountLength
             }
-        }
         
         loopLength = pageCount * displayedCards
         loopInitialValue = loopLength - displayedCards
 
-        if(dataLength % displayedCards != 0){
-            if(pageCount > pageCountLength){
-                pageCount = pageCountLength
-
-                loopLength = dataLength
+        if(pageCount == pageCountLength){
+            if(dataLength % displayedCards != 0){
+                loopLength = dataLength 
                 loopInitialValue = dataLength - (dataLength % displayedCards)
-
             }
         }
 
@@ -240,13 +235,9 @@ let loopInitialValue = loopLength - displayedCards
         loopLength = pageCount * displayedCards
         loopInitialValue = loopLength - displayedCards
 
-        if(dataLength % displayedCards != 0){
-
-            if(loopLength == dataLength - ((dataLength % displayedCards) + displayedCards)){
-                loopLength = dataLength - (dataLength % displayedCards)
-                loopInitialValue = loopLength - displayedCards
-            }
-
+        if(pageCount == pageCountLength-1){
+            loopLength = dataLength - (dataLength % displayedCards)
+            loopInitialValue = loopLength - displayedCards
         }
 
         paginationFunc(loopInitialValue,loopLength,getData)
@@ -257,6 +248,9 @@ let loopInitialValue = loopLength - displayedCards
 
 }
 
+
+// page numbers create function
+/*
 function createPageNumbers(getPageCnts,datum,getStatus){
 
     let htmlEle = ""
@@ -283,13 +277,15 @@ function createPageNumbers(getPageCnts,datum,getStatus){
         })
     });
 }
+*/
 
 //pagination data passing through create element function
-function paginationFunc(LengthInitailValue,LoopLength,datum){
+function paginationFunc(LengthInitailValue,paginationLoopLength,datum){
+    console.log(LengthInitailValue,paginationLoopLength)
 
     let getAllDatum = [];
     
-    for(let i=LengthInitailValue;i<LoopLength;i++){
+    for(let i=LengthInitailValue;i<paginationLoopLength;i++){
         getAllDatum.push(datum[i])
     }
 
