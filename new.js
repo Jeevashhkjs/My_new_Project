@@ -2,7 +2,7 @@
 
 let btns = document.querySelector(".buttonses")
 let cards = document.querySelector(".NoOfCards")
-let ulList = document.querySelector(".countsListsUL") 
+let ulList = document.querySelector(".countsListsUL")
 
 
 //next and pre btns
@@ -13,59 +13,59 @@ let previousBtn = document.querySelector("#previousBtn")
 let headerBtns = []
 
 //storing dynamic buttons
-window.addEventListener("DOMContentLoaded",()=>{
+window.addEventListener("DOMContentLoaded", () => {
     fetch(`http://localhost:3000/projects`)
-    .then(res => res.json())
-    .then(data => {
+        .then(res => res.json())
+        .then(data => {
 
-        //storing btns with filtered
-        data.forEach(getData => {
-            if(headerBtns.indexOf(getData.category) == -1){
-                headerBtns.push(getData.category)
-            }
-            if(getData.is_starred == true){
-                if(headerBtns.indexOf("Starred") == -1){
-                    headerBtns.push("Starred")
+            //storing btns with filtered
+            data.forEach(getData => {
+                if (headerBtns.indexOf(getData.category) == -1) {
+                    headerBtns.push(getData.category)
                 }
-            }
-        })
-
-        //create dynamic buttons
-        headerBtns.forEach(getBtns => {
-            let createBtn = document.createElement("button")
-            createBtn.innerText = getBtns
-            createBtn.setAttribute("class",`Btn_${getBtns}`)
-            createBtn.setAttribute("id","filterBtn")
-            btns.append(createBtn)
-        })
-
-        // Filter btns addevenet listner
-        let filterBtns = document.querySelectorAll("#filterBtn")
-        filterBtns.forEach(getFilterBtn => {
-            getFilterBtn.addEventListener("click",(e)=>{
-                let targetElement = e.target
-                let className = e.target.classList[0]
-                let filterClassName = className.slice(4,className.length)
-                createElements(filterClassName)
-
-                // active class and deactive class funciton passing params
-                activeDeactiveClass(filterBtns,targetElement)
+                if (getData.is_starred == true) {
+                    if (headerBtns.indexOf("Starred") == -1) {
+                        headerBtns.push("Starred")
+                    }
+                }
             })
+
+            //create dynamic buttons
+            headerBtns.forEach(getBtns => {
+                let createBtn = document.createElement("button")
+                createBtn.innerText = getBtns
+                createBtn.setAttribute("class", `Btn_${getBtns}`)
+                createBtn.setAttribute("id", "filterBtn")
+                btns.append(createBtn)
+            })
+
+            // Filter btns addevenet listner
+            let filterBtns = document.querySelectorAll("#filterBtn")
+            filterBtns.forEach(getFilterBtn => {
+                getFilterBtn.addEventListener("click", (e) => {
+                    let targetElement = e.target
+                    let className = e.target.classList[0]
+                    let filterClassName = className.slice(4, className.length)
+                    createElements(filterClassName)
+
+                    // active class and deactive class funciton passing params
+                    activeDeactiveClass(filterBtns, targetElement)
+                })
+            })
+
+            // fetch full datas on db
+            // createHtmlElementFunciton(data)
+
+            //pagination Data passing through
+            pageBtnsFnc(data)
         })
-
-        // fetch full datas on db
-        createHtmlElementFunciton(data)
-
-        //pagination Data passing through
-        pageBtnsFnc(data)
-    })
 })
 
 
 // active btns and deactive btns function 
-function activeDeactiveClass(allBtns,getTargetElement){
+function activeDeactiveClass(allBtns, getTargetElement) {
     allBtns.forEach(element => {
-        if(element.classList.contains("activeBtn")){
+        if (element.classList.contains("activeBtn")) {
             element.classList.remove("activeBtn")
         }
     });
@@ -73,26 +73,26 @@ function activeDeactiveClass(allBtns,getTargetElement){
 }
 
 // fetch elements with filtered
-function createElements(getClass){
+function createElements(getClass) {
 
     let passedLink = getClass != "Starred" ? `http://localhost:3000/projects?category=${getClass}` : `http://localhost:3000/projects?is_starred=true`;
 
     fetch(passedLink)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        // passing data from dp to web with filter
-        createHtmlElementFunciton(data)
+        .then(res => res.json())
+        .then(data => {
+            
+            // passing data from dp to web with filter
+            // createHtmlElementFunciton(data)
 
-        pageBtnsFnc(data)
+            pageBtnsFnc(data)
 
-    })
+        })
 
 }
 
 
 // create no of cards 
-function createHtmlElementFunciton(data){
+function createHtmlElementFunciton(data) {
 
     let HTMLElements = data.map(getData => {
 
@@ -102,7 +102,7 @@ function createHtmlElementFunciton(data){
 
         let icons = getData.is_starred ? "fa-solid" : "fa-regular";
 
-    return ElementsFromApi = `
+        return ElementsFromApi = `
         <div class = "mainParentDiv">
             <div class = "ContentparentDiv">
              <div class = "UserDetails">
@@ -130,14 +130,14 @@ function createHtmlElementFunciton(data){
 }
 
 // get element and delete star function 
-function deleteAndStar(getElements){
+function deleteAndStar(getElements) {
     getElements.forEach(getStarBtns => {
-        getStarBtns.addEventListener("click",(e)=>{
+        getStarBtns.addEventListener("click", (e) => {
             let getTargetId = e.target
-            if(e.target.classList.contains("fa-star")){
+            if (e.target.classList.contains("fa-star")) {
                 starFunction(getTargetId)
             }
-            else{
+            else {
                 deleteFunction(getTargetId.id)
             }
         })
@@ -145,114 +145,109 @@ function deleteAndStar(getElements){
 }
 
 //star function 
-function starFunction(getTarId){
+function starFunction(getTarId) {
 
     let values = getTarId.classList.contains("fa-solid") ? false : true;
 
     fetch(`http://localhost:3000/projects/${getTarId.id}`)
-    .then(res => res.json())
-    .then(datum => {
+        .then(res => res.json())
+        .then(datum => {
 
-        fetch(`http://localhost:3000/projects/${getTarId.id}`,{
-            method:"PUT",
-            headers:{'content-type':'application/json'},
-            body: JSON.stringify({
-                "id": datum.id,
-                "project_name": datum.project_name,
-                "owner_name": datum.owner_name,
-                "is_starred" : values,
-                "category": datum.category
+            fetch(`http://localhost:3000/projects/${getTarId.id}`, {
+                method: "PUT",
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({
+                    "id": datum.id,
+                    "project_name": datum.project_name,
+                    "owner_name": datum.owner_name,
+                    "is_starred": values,
+                    "category": datum.category
+                })
             })
-        })
 
-    })
+        })
 }
 
 //delete function 
-function deleteFunction(getTargetId){
+function deleteFunction(getTargetId) {
     fetch(`http://localhost:3000/projects/${getTargetId}`, {
         method: "DELETE",
-        headers:{'Content-type':'application/json'}
+        headers: { 'Content-type': 'application/json' }
     })
 }
 
 
 // pagination code here
 let pageCount = 1;
-let displayedCards = 2;
+let displayedCards = 3;
 
 //btns function
-function pageBtnsFnc(getData){
+function pageBtnsFnc(getData) {
 
-// pagecount length divisible by pagecards
-let pageCountLength = Math.ceil(getData.length / displayedCards)
+    // pagecount length divisible by pagecards
+    let pageCountLength = Math.ceil(getData.length / displayedCards)
 
-let dataLength = getData.length
+    let dataLength = getData.length
 
-// if(dataLength % displayedCards == 0){
-//     createPageNumbers(pageCountLength,getData,0)
-// }
-// else{
-//     createPageNumbers(pageCountLength + 1,getData,1)
-// }
+    // call page numbers create function
+        createPageNumbers(pageCountLength,getData)
 
-// get data length
+    // get data length
 
-// initial values and length
-let loopLength = pageCount * displayedCards
-let loopInitialValue = loopLength - displayedCards
+    // initial values and length
+    let loopLength = pageCount * displayedCards
+    let loopInitialValue = loopLength - displayedCards
 
-//next btn function
-    nextBtn.addEventListener("click",()=>{
+    //next btn function
+    nextBtn.addEventListener("click", () => {
         pageCount++
 
-            if(pageCount > pageCountLength){
-                pageCount = pageCountLength
-            }
-        
+        if (pageCount > pageCountLength) {
+            pageCount = pageCountLength
+        }
+
         loopLength = pageCount * displayedCards
         loopInitialValue = loopLength - displayedCards
 
-        if(pageCount == pageCountLength){
-            if(dataLength % displayedCards != 0){
-                loopLength = dataLength 
+        if (pageCount == pageCountLength) {
+            if (dataLength % displayedCards != 0) {
+                loopLength = dataLength
                 loopInitialValue = dataLength - (dataLength % displayedCards)
             }
         }
 
-        paginationFunc(loopInitialValue,loopLength,getData)
+        paginationFunc(loopInitialValue, loopLength, getData)
     })
 
-//previous btn function
-    previousBtn.addEventListener("click",()=>{
+    //previous btn function
+    previousBtn.addEventListener("click", () => {
 
         pageCount--
 
-        if(pageCount < 1){
+        if (pageCount < 1) {
             pageCount = 1
         }
 
         loopLength = pageCount * displayedCards
         loopInitialValue = loopLength - displayedCards
 
-        if(pageCount == pageCountLength-1){
+        if (pageCount == pageCountLength - 1) {
             loopLength = dataLength - (dataLength % displayedCards)
             loopInitialValue = loopLength - displayedCards
         }
-
-        paginationFunc(loopInitialValue,loopLength,getData)
+        paginationFunc(loopInitialValue, loopLength, getData)
     })
-    
 
-    paginationFunc(loopInitialValue,loopLength,getData)
+
+    paginationFunc(loopInitialValue, loopLength, getData)
 
 }
 
 
 // page numbers create function
-/*
-function createPageNumbers(getPageCnts,datum,getStatus){
 
+function createPageNumbers(getPageCnts,datum){
+    
     let htmlEle = ""
     for(let i=0;i<getPageCnts;i++){
         htmlEle += `<li class = "pageNumbers">${i+1}</li>`
@@ -262,12 +257,13 @@ function createPageNumbers(getPageCnts,datum,getStatus){
     let pageNumbersBtns = document.querySelectorAll(".pageNumbers")
     pageNumbersBtns.forEach(getBtns => {
         getBtns.addEventListener("click",(e)=>{
+
             let targetId = Number(e.target.innerText)
             let lpLength = targetId * displayedCards
             let initial = lpLength - displayedCards
 
-            if(getStatus){
-                if(targetId == getPageCnts){
+            if(targetId == getPageCnts){
+                if(datum.length % targetId !=0){
                     lpLength = datum.length
                     initial = datum.length - (datum.length % displayedCards)
                 }
@@ -277,15 +273,14 @@ function createPageNumbers(getPageCnts,datum,getStatus){
         })
     });
 }
-*/
+
 
 //pagination data passing through create element function
-function paginationFunc(LengthInitailValue,paginationLoopLength,datum){
-    console.log(LengthInitailValue,paginationLoopLength)
+function paginationFunc(LengthInitailValue, paginationLoopLength, datum) {
 
     let getAllDatum = [];
-    
-    for(let i=LengthInitailValue;i<paginationLoopLength;i++){
+
+    for (let i = LengthInitailValue; i < paginationLoopLength; i++) {
         getAllDatum.push(datum[i])
     }
 
