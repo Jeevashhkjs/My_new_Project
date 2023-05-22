@@ -9,6 +9,10 @@ let ulList = document.querySelector(".countsListsUL")
 let nextBtn = document.querySelector("#nextBtn")
 let previousBtn = document.querySelector("#previousBtn")
 
+// page count and no of cards asssigned
+let pageCount = 1;
+let displayedCards = 3;
+
 //unique value of btns
 let headerBtns = []
 
@@ -80,7 +84,8 @@ function createElements(getClass) {
     fetch(passedLink)
         .then(res => res.json())
         .then(data => {
-            
+
+         pageCount = 1;
             // passing data from dp to web with filter
             // createHtmlElementFunciton(data)
 
@@ -178,8 +183,7 @@ function deleteFunction(getTargetId) {
 
 
 // pagination code here
-let pageCount = 1;
-let displayedCards = 3;
+
 
 //btns function
 function pageBtnsFnc(getData) {
@@ -200,6 +204,7 @@ function pageBtnsFnc(getData) {
 
     //next btn function
     nextBtn.addEventListener("click", () => {
+
         pageCount++
 
         if (pageCount > pageCountLength) {
