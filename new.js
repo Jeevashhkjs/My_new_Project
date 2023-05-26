@@ -304,15 +304,13 @@ function paginationFunc(LengthInitailValue, paginationLoopLength, datum) {
 
 // search function code here
 
-let owerName = [];
 
 userInput.addEventListener("keyup",()=>{
     let userValue = userInput.value.toUpperCase()
-    searchFunction(userValue)
-    if(userInput.value == ""){
-        owerName = ""
-    }
+        searchFunction(userValue)
 })
+
+let getOwerNameFilter = [];
 
 function searchFunction(getValue){
     fetch(`http://localhost:3000/projects`)
@@ -320,27 +318,46 @@ function searchFunction(getValue){
     .then(getData => {
 
         let arrayData = [];
+        let owerNameArray = [];
 
         getData.forEach(getDBData => {
             if(getDBData.project_name.toUpperCase().indexOf(getValue) != -1){
                 arrayData.push(getDBData)
-                if(owerName.indexOf(getDBData.owner_name) == -1){
-                    owerName.push(getDBData.owner_name)
-                }
+
+                    if(owerNameArray.indexOf(getDBData.owner_name) == -1){
+                        owerNameArray.push(getDBData.owner_name)
+                    }
+                    if(userInput.value == ""){
+                        owerNameArray.length = 0
+                    }
             }
+        });
+
+        // create checkbox elements
+        let createCheckBoxFc = owerNameArray.map(elemet => {
+            return checkBoxElements = `
+            <input type="checkbox" id="owerName" name="${elemet}" class="owerName" />
+            <lable>${elemet}</lable>
+            `
+        }).join("")
+        owerNameDiv.innerHTML = createCheckBoxFc
+    
+        let owerNameList = document.querySelectorAll(".owerName")
+
+        owerNameList.forEach(getHtmlElement => {
+            getHtmlElement.checked = true
+            getHtmlElement.addEventListener("change",()=>{
+                owerNameList.forEach(getChecked => {
+                    if(getChecked.checked){
+                        getOwerNameFilter.push(getChecked);
+                    }
+                });
+            })
         });
 
         pageBtnsFnc(arrayData)
 
-        console.log(owerName)
-
-        // let checkboxElements = owerName.map(getOwerName =>{
-        //     return htmlElements = `
-        //     <input type="checkbox" id="owerName" class="owerName" />
-        //     <lable>${getOwerName}</lable>
-        //     `
-        // }).join("")
-
-        // owerNameDiv.innerHTML = checkboxElements
     })
 }
+
+

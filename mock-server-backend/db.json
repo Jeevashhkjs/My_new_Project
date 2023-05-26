@@ -3,140 +3,140 @@
     {
       "id": 1,
       "project_name": "Miracle project",
-      "owner_name": "sanjay",
+      "owner_name": "Shruti",
       "is_starred": true,
       "category": "my_projects"
     },
     {
       "id": 2,
       "project_name": "JS project",
-      "owner_name": "sam",
+      "owner_name": "Tamannah",
       "is_starred": false,
       "category": "my_projects"
     },
     {
       "id": 3,
       "project_name": "DBMS project",
-      "owner_name": "ram",
+      "owner_name": "Nivetha",
       "is_starred": false,
       "category": "my_projects"
     },
     {
       "id": 4,
       "project_name": "DBMS project",
-      "owner_name": "ram",
+      "owner_name": "Rashmika",
       "is_starred": false,
       "category": "my_projects"
     },
     {
       "id": 5,
       "project_name": "DBMS project",
-      "owner_name": "ram",
+      "owner_name": "Dhanshika",
       "is_starred": false,
       "category": "my_projects"
     },
     {
       "id": 7,
       "project_name": "abc project",
-      "owner_name": "avinash",
+      "owner_name": "Amy",
       "is_starred": true,
       "category": "shared_projects"
     },
     {
       "id": 8,
       "project_name": "abc project",
-      "owner_name": "avinash",
+      "owner_name": "Keerthy",
       "is_starred": false,
       "category": "shared_projects"
     },
     {
       "id": 9,
       "project_name": "abc project",
-      "owner_name": "avinash",
+      "owner_name": "Hansika",
       "is_starred": false,
       "category": "shared_projects"
     },
     {
       "id": 10,
       "project_name": "Ags project",
-      "owner_name": "avinash",
+      "owner_name": "Trisha",
       "is_starred": false,
       "category": "shared_projects"
     },
     {
       "id": 11,
       "project_name": "Miracle project",
-      "owner_name": "sanjay",
+      "owner_name": "Shruti",
       "is_starred": false,
       "category": "my_projects"
     },
     {
       "id": 12,
       "project_name": "JS project",
-      "owner_name": "sam",
+      "owner_name": "Shriya",
       "is_starred": false,
       "category": "my_projects"
     },
     {
       "id": 13,
       "project_name": "DBMS project",
-      "owner_name": "ram",
+      "owner_name": "Nayanthara",
       "is_starred": false,
       "category": "my_projects"
     },
     {
       "id": 14,
       "project_name": "Design project",
-      "owner_name": "sanjay",
+      "owner_name": "Nidhhi",
       "is_starred": true,
       "category": "shared_projects"
     },
     {
       "id": 15,
       "project_name": "Php project",
-      "owner_name": "ram",
+      "owner_name": "Shraddha",
       "is_starred": false,
       "category": "shared_projects"
     },
     {
       "id": 16,
       "project_name": "Document project",
-      "owner_name": "sam",
+      "owner_name": "Namitha",
       "is_starred": true,
       "category": "shared_projects"
     },
     {
       "id": 17,
       "project_name": "Watch project",
-      "owner_name": "sanjay",
+      "owner_name": "Varalaxmi",
       "is_starred": false,
       "category": "shared_projects"
     },
     {
       "id": 18,
       "project_name": "Team project",
-      "owner_name": "ram",
+      "owner_name": "Raai",
       "is_starred": false,
       "category": "shared_projects"
     },
     {
       "id": 19,
       "project_name": "abc project",
-      "owner_name": "avinash",
+      "owner_name": "Priya",
       "is_starred": false,
       "category": "shared_projects"
     },
     {
       "id": 20,
       "project_name": "Ags project",
-      "owner_name": "avinash",
+      "owner_name": "Regina",
       "is_starred": false,
       "category": "shared_projects"
     },
     {
       "id": 21,
       "project_name": "Jeeva Jasmine",
-      "owner_name": "Jasmine",
+      "owner_name": "Andrea",
       "is_starred": false,
       "category": "shared_projects"
     }
