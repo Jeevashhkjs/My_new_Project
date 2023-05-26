@@ -8,6 +8,10 @@ let ulList = document.querySelector(".countsListsUL")
 //next and pre btns
 let nextBtn = document.querySelector("#nextBtn")
 let previousBtn = document.querySelector("#previousBtn")
+let userInput = document.querySelector("#userInput")
+
+//ower Name get elements
+let owerNameDiv = document.querySelector(".owerNameDiv")
 
 // page count and no of cards asssigned
 let pageCount = 1;
@@ -188,19 +192,26 @@ function deleteFunction(getTargetId) {
 //btns function
 function pageBtnsFnc(getData) {
 
-    // pagecount length divisible by pagecards
-    let pageCountLength = Math.ceil(getData.length / displayedCards)
 
     let dataLength = getData.length
 
-    // call page numbers create function
-        createPageNumbers(pageCountLength,getData)
+    // pagecount length divisible by pagecards
+    let pageCountLength = Math.ceil(getData.length / displayedCards)
 
-    // get data length
+    // call page numbers create function
+    createPageNumbers(pageCountLength,getData)
 
     // initial values and length
     let loopLength = pageCount * displayedCards
     let loopInitialValue = loopLength - displayedCards
+
+    if(dataLength < displayedCards){
+        pageCountLength = 1
+        paginationFunc(0,dataLength,getData)
+    }
+    else{
+        paginationFunc(loopInitialValue, loopLength, getData)
+    }
 
     //next btn function
     nextBtn.addEventListener("click", () => {
@@ -244,7 +255,6 @@ function pageBtnsFnc(getData) {
     })
 
 
-    paginationFunc(loopInitialValue, loopLength, getData)
 
 }
 
@@ -290,4 +300,47 @@ function paginationFunc(LengthInitailValue, paginationLoopLength, datum) {
     }
 
     createHtmlElementFunciton(getAllDatum)
+}
+
+// search function code here
+
+let owerName = [];
+
+userInput.addEventListener("keyup",()=>{
+    let userValue = userInput.value.toUpperCase()
+    searchFunction(userValue)
+    if(userInput.value == ""){
+        owerName = ""
+    }
+})
+
+function searchFunction(getValue){
+    fetch(`http://localhost:3000/projects`)
+    .then(data => data.json())
+    .then(getData => {
+
+        let arrayData = [];
+
+        getData.forEach(getDBData => {
+            if(getDBData.project_name.toUpperCase().indexOf(getValue) != -1){
+                arrayData.push(getDBData)
+                if(owerName.indexOf(getDBData.owner_name) == -1){
+                    owerName.push(getDBData.owner_name)
+                }
+            }
+        });
+
+        pageBtnsFnc(arrayData)
+
+        console.log(owerName)
+
+        // let checkboxElements = owerName.map(getOwerName =>{
+        //     return htmlElements = `
+        //     <input type="checkbox" id="owerName" class="owerName" />
+        //     <lable>${getOwerName}</lable>
+        //     `
+        // }).join("")
+
+        // owerNameDiv.innerHTML = checkboxElements
+    })
 }
