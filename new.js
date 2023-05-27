@@ -324,40 +324,59 @@ function searchFunction(getValue){
             if(getDBData.project_name.toUpperCase().indexOf(getValue) != -1){
                 arrayData.push(getDBData)
 
-                    if(owerNameArray.indexOf(getDBData.owner_name) == -1){
-                        owerNameArray.push(getDBData.owner_name)
-                    }
-                    if(userInput.value == ""){
-                        owerNameArray.length = 0
-                    }
+                if(owerNameArray.indexOf(getDBData.owner_name) == -1){
+                    owerNameArray.push(getDBData.owner_name)
+                }
+                if(userInput.value == ""){
+                    owerNameArray.length = 0
+                }
             }
-        });
 
-        // create checkbox elements
         let createCheckBoxFc = owerNameArray.map(elemet => {
-            return checkBoxElements = `
-            <input type="checkbox" id="owerName" name="${elemet}" class="owerName" />
-            <lable>${elemet}</lable>
+        return checkBoxElements = `
+        <input type="checkbox" id="owerName" name="${elemet}" class="owerName" />
+        <lable>${elemet}</lable>
             `
         }).join("")
         owerNameDiv.innerHTML = createCheckBoxFc
-    
-        let owerNameList = document.querySelectorAll(".owerName")
 
-        owerNameList.forEach(getHtmlElement => {
-            getHtmlElement.checked = true
-            getHtmlElement.addEventListener("change",()=>{
-                owerNameList.forEach(getChecked => {
-                    if(getChecked.checked){
-                        getOwerNameFilter.push(getChecked);
-                    }
-                });
+        let owerNameList = document.querySelectorAll(".owerName")
+        owerNameList.forEach(element =>{
+            owerNameList.checked = true                                         
+            element.addEventListener("change",()=>{
+                console.log(element.name)
             })
-        });
+        })
+    });
+
+        // create checkbox elements
+
+    
+
 
         pageBtnsFnc(arrayData)
 
     })
 }
 
+function checkBoxFc(getList){
+    console.log(getList)
+}
+// owerNameList.forEach(getHtmlElement => {
+//     getHtmlElement.checked = true
+//     getHtmlElement.addEventListener("change",()=>{
+
+//         owerNameList.forEach(getChecked => {
+//             if(getChecked.checked){
+//                 getOwerNameFilter.push(getChecked.name);
+
+//                     if(getDBData.owner_name.indexOf("Namitha") != -1){
+//                         owerName.push(getDBData);
+//                         pageBtnsFnc(owerName)
+//                     }
+
+//             }
+//         });
+//     })
+// });
 
