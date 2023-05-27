@@ -2,9 +2,9 @@
   "projects": [
     {
       "id": 1,
-      "project_name": "Miracle project",
+      "project_name": "jeeva project",
       "owner_name": "Shruti",
-      "is_starred": true,
+      "is_starred": false,
       "category": "my_projects"
     },
     {
@@ -31,7 +31,7 @@
     {
       "id": 5,
       "project_name": "DBMS project",
-      "owner_name": "Dhanshika",
+      "owner_name": "Hansika",
       "is_starred": false,
       "category": "my_projects"
     },
@@ -39,7 +39,7 @@
       "id": 7,
       "project_name": "abc project",
       "owner_name": "Amy",
-      "is_starred": true,
+      "is_starred": false,
       "category": "shared_projects"
     },
     {
@@ -73,14 +73,14 @@
     {
       "id": 12,
       "project_name": "JS project",
-      "owner_name": "Shriya",
+      "owner_name": "Hansika",
       "is_starred": false,
       "category": "my_projects"
     },
     {
       "id": 13,
       "project_name": "DBMS project",
-      "owner_name": "Nayanthara",
+      "owner_name": "Hansika",
       "is_starred": false,
       "category": "my_projects"
     },
@@ -88,7 +88,7 @@
       "id": 14,
       "project_name": "Design project",
       "owner_name": "Nidhhi",
-      "is_starred": true,
+      "is_starred": false,
       "category": "shared_projects"
     },
     {
@@ -101,8 +101,8 @@
     {
       "id": 16,
       "project_name": "Document project",
-      "owner_name": "Namitha",
-      "is_starred": true,
+      "owner_name": "Hansika",
+      "is_starred": false,
       "category": "shared_projects"
     },
     {
