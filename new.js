@@ -341,26 +341,41 @@ function searchFunction(getValue){
         owerNameDiv.innerHTML = createCheckBoxFc
 
         let owerNameList = document.querySelectorAll(".owerName")
-        owerNameList.forEach(element =>{
-            owerNameList.checked = true                                         
-            element.addEventListener("change",()=>{
-                console.log(element.name)
+        owerNameList.forEach(getCheckBoxEle =>{
+            getCheckBoxEle.checked = true  
+
+            getCheckBoxEle.addEventListener("change",()=>{
+                owerNameList.forEach(getCheckedElements => {
+                   if(getCheckedElements.checked == true){
+                    console.log(getCheckedElements)
+                    // if(getOwerNameFilter.indexOf(getCheckedElements.name) == -1){
+                    //     getOwerNameFilter.push(getCheckedElements.name)
+                    // }
+                    // checkBoxFc(getValue,getOwerNameFilter,getData)
+                   }
+                });
             })
+            
         })
     });
 
         // create checkbox elements
-
-    
-
-
         pageBtnsFnc(arrayData)
 
     })
 }
 
-function checkBoxFc(getList){
-    console.log(getList)
+function checkBoxFc(getSearchValue,ownerArray,getDatum){
+    // let filterArrayCheck = [];
+    // getDatum.forEach(getDataFromDb =>{
+    //     ownerArray.forEach(ele => {
+    //         if(getDataFromDb.owner_name.indexOf(ele) != -1 && getDataFromDb.project_name.toUpperCase().indexOf(getSearchValue) != -1){
+    //             filterArrayCheck.push(getDataFromDb)
+    //         }
+    //     })
+    // })
+    console.log(ownerArray)
+    // console.log(filterDatum)
 }
 // owerNameList.forEach(getHtmlElement => {
 //     getHtmlElement.checked = true
